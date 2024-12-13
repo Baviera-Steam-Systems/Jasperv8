@@ -317,6 +317,12 @@ def register_jasper_report(report_name, model_name):
 class ir_actions_report_xml(osv.osv):
     _inherit = 'ir.actions.report.xml'
 
+    def render_report(self, cr, uid, res_ids, name, data, context=None):
+        ctx = context.copy()
+        return super(ir_actions_report_xml, self).render_report(
+            cr, uid, res_ids, name, data, context=ctx
+        )
+
     def _lookup_report(self, cr, name):
         """
         Look up a report definition.
